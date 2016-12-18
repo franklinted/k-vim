@@ -61,40 +61,13 @@ filetype plugin indent on
 
 " 文件修改之后自动载入
 set autoread
-" 启动的时候不显示那个援助乌干达儿童的提示
-set shortmess=atI
-
-" 备份,到另一个位置. 防止误删, 目前是取消备份
-"set backup
-"set backupext=.bak
-"set backupdir=/tmp/vimbk/
 
 " 取消备份。 视情况自己改
 set nobackup
 " 关闭交换文件
 set noswapfile
 
-
-" TODO: remove this, use gundo
-" create undo file
-" if has('persistent_undo')
-  " " How many undos
-  " set undolevels=1000
-  " " number of lines to save for undo
-  " set undoreload=10000
-  " " So is persistent undo ...
-  " "set undofile
-  " set noundofile
-  " " set undodir=/tmp/vimundo/
-" endif
-
-set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
-
-" 突出显示当前列
-set cursorcolumn
-" 突出显示当前行
-set cursorline
-
+set wildignore=*.swp,*.bak,*.pyc,*.class,.svn,.git
 
 " 设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制, 不需要可以去掉
 " 好处：误删什么的，如果以前屏幕打开，可以找回
@@ -102,22 +75,20 @@ set t_ti= t_te=
 
 
 " 鼠标暂不启用, 键盘党....
-set mouse-=a
+" set mouse-=a
 " 启用鼠标
-" set mouse=a
+set mouse=a
 " Hide the mouse cursor while typing
 " set mousehide
 
 
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
-set selection=inclusive
-set selectmode=mouse,key
+"set selection=inclusive
+"set selectmode=mouse,key
 
 " change the terminal's title
 set title
-" 去掉输入错误的提示声音
-set novisualbell
-set noerrorbells
+
 set t_vb=
 set tm=500
 
@@ -153,7 +124,7 @@ set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\
 set laststatus=2
 
 " 显示行号
-set number
+" set number
 " 取消换行
 set nowrap
 
@@ -165,7 +136,7 @@ set matchtime=2
 
 " 设置文内智能搜索提示
 " 高亮search命中的文本
-set hlsearch
+" set hlsearch
 " 打开增量搜索模式,随着键入即时搜索
 set incsearch
 " 搜索时忽略大小写
@@ -220,8 +191,8 @@ set shiftround
 
 " A buffer becomes hidden when it is abandoned
 set hidden
-set wildmode=list:longest
-set ttyfast
+set wildmode=list:longest:full
+" set ttyfast
 
 " 00x增减数字时使用十进制
 set nrformats=
@@ -236,8 +207,10 @@ autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber number
+  elseif(&number ==1)
+    set norelativenumber nonumber
   else
-    set relativenumber
+    set relativenumber number  
   endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
@@ -276,59 +249,16 @@ set formatoptions+=B
 "==========================================
 " others 其它设置
 "==========================================
-" vimrc文件修改之后自动加载, windows
-autocmd! bufwritepost _vimrc source %
-" vimrc文件修改之后自动加载, linux
+
 autocmd! bufwritepost .vimrc source %
 
-" 自动补全配置
-" 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-set completeopt=longest,menu
-
-" 增强模式中的命令行自动完成操作
-set wildmenu
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc,*.class
-
-" 离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" 回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-
-" In the quickfix window, <CR> is used to jump to the error under the
-" cursor, so undefine the mapping there.
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-" quickfix window  s/v to open in split window,  ,gd/,jd => quickfix window => open it
-autocmd BufReadPost quickfix nnoremap <buffer> v <C-w><Enter><C-w>L
-autocmd BufReadPost quickfix nnoremap <buffer> s <C-w><Enter><C-w>K
-
-" command-line window
-autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
-
-
-" 上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
-" 打开自动定位到最后编辑的位置, 需要确认 .viminfo 当前用户可写
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-"==========================================
-" HotKey Settings  自定义快捷键设置
-"==========================================
-
-" 主要按键重定义
-
+" autoload _vimrc
+autocmd! bufwritepost ~/.vimrc source ~/.vimrc 
 " 关闭方向键, 强迫自己用 hjkl
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
+" map <Left> <Nop>
+" map <Right> <Nop>
+" map <Up> <Nop>
+" map <Down> <Nop>
 
 "Treat long lines as break lines (useful when moving around in them)
 "se swap之后，同物理行上线直接跳
@@ -343,19 +273,6 @@ nnoremap gj j
 " I can type :help on my own, thanks.  Protect your fat fingers from the evils of <F1>
 noremap <F1> <Esc>"
 
-" F2 行号开关，用于鼠标复制代码用
-" 为方便复制，用<F2>开启/关闭行号显示:
-function! HideNumber()
-  if(&relativenumber == &number)
-    set relativenumber! number!
-  elseif(&number)
-    set number!
-  else
-    set relativenumber!
-  endif
-  set number?
-endfunc
-nnoremap <F2> :call HideNumber()<CR>
 " F3 显示可打印字符开关
 nnoremap <F3> :set list! list?<CR>
 " F4 换行开关
@@ -388,7 +305,8 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
+nmap    w,  :vertical resize -3<CR>
+nmap    w.  :vertical resize +3<CR>
 
 " http://stackoverflow.com/questions/13194428/is-better-way-to-zoom-windows-in-vim-than-zoomwin
 " Zoom / Restore window.
@@ -453,9 +371,6 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " 切换前后buffer
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
-" 使用方向键切换buffer
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
 
 
 " tab 操作
@@ -610,33 +525,6 @@ if has("autocmd")
   endif
 endif
 
-"==========================================
-" TEMP 设置, 尚未确定要不要
-"==========================================
-
-" tmux
-" function! WrapForTmux(s)
-"   if !exists('$TMUX')
-"     return a:s
-"   endif
-"
-"   let tmux_start = "\<Esc>Ptmux;"
-"   let tmux_end = "\<Esc>\\"
-"
-"   return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-" endfunction
-"
-" let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-" let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-" allows cursor change in tmux mode
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-" if exists('$TMUX')
-    " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-" endif
-
 
 "==========================================
 " Theme Settings  主题设置
@@ -684,7 +572,4 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
-
-
-
 

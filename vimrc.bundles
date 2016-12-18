@@ -17,7 +17,7 @@ filetype off " required! turn off
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
     " let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx', 'golang', 'ruby', 'less', 'php', 'coffeescript']
-    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
+    let g:bundle_groups=['python']
 endif
 
 " ----------------------------------------------------------------------------
@@ -51,7 +51,7 @@ Plug 'docunext/closetag.vim'
 " 快速注释
 Plug 'scrooloose/nerdcommenter'
 
-
+Plug 'vim-scripts/taglist.vim'
 " 快速加入修改环绕字符
 " for repeat -> enhance surround.vim, . to repeat command
 Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
@@ -500,7 +500,7 @@ call plug#end()
     let g:multi_cursor_use_default_mapping=0
     " Default mapping
     let g:multi_cursor_next_key='<C-m>'
-    let g:multi_cursor_prev_key='<C-p>'
+    " let g:multi_cursor_prev_key='<C-p>'
     let g:multi_cursor_skip_key='<C-x>'
     let g:multi_cursor_quit_key='<Esc>'
 " }}}
@@ -508,7 +508,7 @@ call plug#end()
 " ################### 功能相关 ###################
 
 " ctrlp ctrlpfunky{{{
-    let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_map = '<leader>f'
     let g:ctrlp_cmd = 'CtrlP'
     map <leader>f :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
@@ -660,10 +660,14 @@ call plug#end()
     "close vim if the only window left open is a NERDTree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
     " s/v 分屏打开文件
-    let g:NERDTreeMapOpenSplit = 's'
-    let g:NERDTreeMapOpenVSplit = 'v'
+    " let g:NERDTreeMapOpenSplit = 's'
+    " let g:NERDTreeMapOpenVSplit = 'v'
+    let g:NERDTreeWinPos="right"
+    let g:NerdTreeWinSize=15
 
+    "map <F8> :TlistToggle<CR>
 
+    map <F9> :NERDTreeToggle<CR>
     " nerdtreetabs
     map <Leader>n <plug>NERDTreeTabsToggle<CR>
     " 关闭同步
@@ -688,8 +692,10 @@ call plug#end()
 
 " 标签导航
 " tagbar {{{
-    nmap <F9> :TagbarToggle<CR>
-    let g:tagbar_autofocus = 1
+    nmap <F8> :TagbarToggle<CR>
+    let g:tagbar_autofocus = 0
+    let g:tagbar_width = 15
+    let g:tagbar_left=1 
     " let g:tagbar_autoshowtag = 1
     " let g:tagbar_show_visibility = 1
     " for ruby
