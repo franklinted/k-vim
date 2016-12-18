@@ -112,8 +112,8 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'thinca/vim-quickrun'
 
 " git
-" fugitive
-Plug 'tpope/vim-fugitive'
+" fugitive use franklinted to support symlinks
+Plug 'franklinted/vim-fugitive'
 " gitgutter
 Plug 'airblade/vim-gitgutter'
 
@@ -568,12 +568,12 @@ call plug#end()
     " :Gdiff  :Gstatus :Gvsplit
     nnoremap <leader>ge :Gdiff<CR>
     " not ready to open
-    <leader>gb maps to :Gblame<CR>
-    <leader>gs maps to :Gstatus<CR>
-    <leader>gd maps to :Gdiff<CR>  和现有冲突
-    <leader>gl maps to :Glog<CR>
-    <leader>gc maps to :Gcommit<CR>
-    <leader>gp maps to :Git push<CR>
+    nnoremap <leader>gb maps to :Gblame<CR>
+    nnoremap <leader>gs maps to :Gstatus<CR>
+    nnoremap <leader>gd maps to :Gdiff<CR>
+    nnoremap <leader>gl maps to :Glog<CR>
+    nnoremap <leader>gc maps to :Gcommit<CR>
+    nnoremap <leader>gp maps to :Git push<CR>
 " }}}
 
 " gitgutter {{{
