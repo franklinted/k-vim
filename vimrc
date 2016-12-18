@@ -271,7 +271,7 @@ nnoremap gj j
 
 " F1 废弃这个键,防止调出系统帮助
 " I can type :help on my own, thanks.  Protect your fat fingers from the evils of <F1>
-noremap <F1> <Esc>"
+noremap <F1> <Esc>
 
 " F3 显示可打印字符开关
 nnoremap <F3> :set list! list?<CR>
@@ -305,6 +305,8 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+nmap    w=  :resize +3<CR>
+nmap    w-  :resize -3<CR>
 nmap    w,  :vertical resize -3<CR>
 nmap    w.  :vertical resize +3<CR>
 
@@ -349,18 +351,18 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Keep search pattern at the center of the screen.
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
+" nnoremap <silent> n nzz
+" nnoremap <silent> N Nzz
+" nnoremap <silent> * *zz
+" nnoremap <silent> # #zz
+" nnoremap <silent> g* g*zz
 
 " 去掉搜索高亮
 noremap <silent><leader>/ :nohls<CR>
 
 " switch # *
-nnoremap # *
-nnoremap * #
+" nnoremap # *
+" nnoremap * #
 
 " for # indent, python文件中输入新行时#号注释不切回行首
 autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
@@ -419,8 +421,8 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 " => 选中及操作改键
 
 " 调整缩进后自动选中，方便再次操作
-vnoremap < <gv
-vnoremap > >gv
+" vnoremap < <gv
+" vnoremap > >gv
 
 " y$ -> Y Make Y behave like other capitals
 map Y y$
@@ -434,20 +436,20 @@ vnoremap <leader>y "+y
 " nnoremap <silent> p p`]
 
 " select all
-map <Leader>sa ggVG
-
+" map <Leader>sa ggVG
+ 
 " select block
-nnoremap <leader>v V`}
+" nnoremap <leader>v V`}
 
 " w!! to sudo & write a file
-cmap w!! w !sudo tee >/dev/null %
+" cmap w!! w !sudo tee >/dev/null %
 
 " kj 替换 Esc
 inoremap kj <Esc>
 
 " 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
+" nnoremap <C-e> 2<C-e>
+" nnoremap <C-y> 2<C-y>
 
 
 " Jump to start and end of line using the home row keys
@@ -456,21 +458,21 @@ nnoremap <C-y> 2<C-y>
 "nmap T O<ESC>j
 
 " Quickly close the current window
-nnoremap <leader>q :q<CR>
+" nnoremap <leader>q :q<CR>
 
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
 
 " 交换 ' `, 使得可以快速使用'跳到marked位置
-nnoremap ' `
-nnoremap ` '
+" nnoremap ' `
+" nnoremap ` '
 
 " remap U to <C-r> for easier redo
-nnoremap U <C-r>
+" nnoremap U <C-r>
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "==========================================
 " FileType Settings  文件类型设置
@@ -546,7 +548,6 @@ if has("gui_running")
     set noimd
     set t_Co=256
 endif
-
 
 
 " theme主题

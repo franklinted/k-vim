@@ -501,6 +501,7 @@ call plug#end()
     " Default mapping
     let g:multi_cursor_next_key='<C-m>'
     " let g:multi_cursor_prev_key='<C-p>'
+    let g:multi_cursor_prev_key='<C-k>'
     let g:multi_cursor_skip_key='<C-x>'
     let g:multi_cursor_quit_key='<Esc>'
 " }}}
@@ -567,12 +568,12 @@ call plug#end()
     " :Gdiff  :Gstatus :Gvsplit
     nnoremap <leader>ge :Gdiff<CR>
     " not ready to open
-    " <leader>gb maps to :Gblame<CR>
-    " <leader>gs maps to :Gstatus<CR>
-    " <leader>gd maps to :Gdiff<CR>  和现有冲突
-    " <leader>gl maps to :Glog<CR>
-    " <leader>gc maps to :Gcommit<CR>
-    " <leader>gp maps to :Git push<CR>
+    <leader>gb maps to :Gblame<CR>
+    <leader>gs maps to :Gstatus<CR>
+    <leader>gd maps to :Gdiff<CR>  和现有冲突
+    <leader>gl maps to :Glog<CR>
+    <leader>gc maps to :Gcommit<CR>
+    <leader>gp maps to :Git push<CR>
 " }}}
 
 " gitgutter {{{
@@ -581,7 +582,7 @@ call plug#end()
     let g:gitgutter_map_keys = 0
     let g:gitgutter_enabled = 0
     let g:gitgutter_highlight_lines = 1
-    nnoremap <leader>gs :GitGutterToggle<CR>
+    " nnoremap <leader>gs :GitGutterToggle<CR>
 " }}}
 
 " gundo {{{
@@ -654,7 +655,7 @@ call plug#end()
 " ################### 快速导航 ###################
 
 " nerdtree nerdtreetabs {{{
-    map <leader>n :NERDTreeToggle<CR>
+    " map <leader>n :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     "close vim if the only window left open is a NERDTree
